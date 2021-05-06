@@ -71,7 +71,7 @@ func (ctr *GameController) CompleteMultiPlayer(c *gin.Context) {
 
 	multimode, err := ctr.service.CompleteGame(completeGameRequest)
 	if err != nil {
-		panic(err)
+		c.JSON(http.StatusInternalServerError, err.Error())
 	}
 	c.JSON(http.StatusOK, multimode)
 }

@@ -127,7 +127,7 @@ func (s *GameService) StartGame(challenge MultiModeStartRequest) (string, error)
 func (s *GameService) CompleteGame(complete MultiPlayerCompleteRequest) (MultiMode, error) {
 	ongoing := multimode[complete.Key]
 	if !ongoing.Open {
-		return MultiMode{}, errors.New("No open game")
+		return ongoing, nil
 	}
 	player2 := complete.Player
 	if player2 == ongoing.Player1 {
